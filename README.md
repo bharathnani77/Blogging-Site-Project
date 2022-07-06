@@ -1,5 +1,5 @@
 # project1
-# Uranium
+# Radon
 
 Repository for backend cohort - Uranium
 
