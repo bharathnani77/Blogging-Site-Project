@@ -1,54 +1,61 @@
-const mongoose = require("mongoose")
+//Import Modules:
+const mongoose = require('mongoose');
 const ObjectId = mongoose.Schema.Types.ObjectId
-const blogSchema = new mongoose.Schema(
-    {
 
-        title:
-        {
-            type: String,
-            required: 'Blog title is Required',
-            trim:true
-        },
-        body:
-        {
-            type: String,
-            required: 'Blog Body is Required',
-            trim:true
-        },
-        authorId: {
-            type: ObjectId,
-            trim:true,
-            required: 'AuthorId is Required',
-            ref: 'Author'
-        },
-        tags: {
-            type:[String],
-            trim:true
-        },
 
-        category: {
-            type: [String],
-            required:'Blog category is Required',
-            trim:true
-        },
+//Blog Schema:
+const blogSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    body: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    authorId: {
+        type: ObjectId,
+        required: true,
+        ref: "author",
+        trim: true
+    },
+    tags: {
+        type: [String],
+        trim: true
+    },
+    category: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    subcategory: {
+        type: [String],
+        trim: true
+    },
+    deletedAt: {
+        type: Date,
+        default: null,
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false,
+        trim: true
+    },
+    publishedAt: {
+        type: Date,
+        default: null,
+        
+    },
+    isPublished: {
+        type: Boolean,
+        default: false,
+       
+    },
 
-        subcategory: {
-            type: [String],
-            trim:true
-        },
-        isDeleted: {
-            type: Boolean,
-            default: false,
-        },
+}, { timestamps: true });
 
-        publishedAt: Date,
-        DeletedAt:Date,
 
-        isPublished: {
-            type: Boolean,
-            default: false
-        }
-
-    }, { timestamps: true });
-
-module.exports = mongoose.model('blogModel', blogSchema)
+//Export Module:
+module.exports = mongoose.model('blog', blogSchema)
